@@ -1,5 +1,10 @@
 appId: com.electron.app
-productName: faretool
+productName: FareTool
+copyright: 'Copyright © 2023'
+extraResources: {
+  from: './server',
+  to: 'server'
+}
 directories:
   buildResources: build
 files:

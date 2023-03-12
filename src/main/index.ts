@@ -2,7 +2,14 @@ import { app, shell, BrowserWindow } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
+import { execFile } from "child_process";
 
+let serverPath
+if (is.dev) {
+  serverPath = 'E:\\IDEA\\Web\\Mine\\FareTool\\server\\anysign-decrypt.exe'
+} else {
+  serverPath = './resources/server/anysign-decrypt.exe'
+}
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -34,6 +41,29 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
+// 本地需要启动的后台服务名称
+// const serverPath = './resources/server/anysign-decrypt.exe'
+// const serverPath = '../../server/anysign-decrypt.exe'
+let workerProcess
+function runExec (): void {
+  // 执行命令行，如果命令不需要路径，或就是项目根目录，则不需要cwd参数：
+  workerProcess = execFile(serverPath)
+  // 不受child_process默认的缓冲区大小的使用方法，没参数也要写上{}：workerProcess = exec(cmdStr, {})
+  // 打印正常的后台可执行程序输出
+  workerProcess.stdout.on('data', function (data) {
+    console.log('stdout: ' + data)
+  })
+  // 打印错误的后台可执行程序输出
+  workerProcess.stderr.on('data', function (data) {
+    console.log('stderr: ' + data)
+  })
+
+  // 退出之后的输出
+  workerProcess.on('close', function (code) {
+    console.log('out code：' + code)
+  })
+}
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -49,8 +79,6 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
-  createWindow()
-
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -58,6 +86,11 @@ app.whenReady().then(() => {
   })
 })
 
+app.on('ready', () => {
+  // 启动go后台服务
+  runExec()
+  createWindow()
+})
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
 // explicitly with Cmd + Q.

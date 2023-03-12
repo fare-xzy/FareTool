@@ -9,6 +9,19 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AButton: typeof import('ant-design-vue/es')['Button']
+    AForm: typeof import('ant-design-vue/es')['Form']
+    AFormItem: typeof import('ant-design-vue/es')['FormItem']
+    AInput: typeof import('ant-design-vue/es')['Input']
+    AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    ATabPane: typeof import('ant-design-vue/es')['TabPane']
+    ATabs: typeof import('ant-design-vue/es')['Tabs']
+    HddOutlined: typeof import('@ant-design/icons-vue')['HddOutlined']
+    LinkOutlined: typeof import('@ant-design/icons-vue')['LinkOutlined']
+    LockOutlined: typeof import('@ant-design/icons-vue')['LockOutlined']
+    RouterLink: typeof import('vue-router')['RouterLink']
+    RouterView: typeof import('vue-router')['RouterView']
+    UserOutlined: typeof import('@ant-design/icons-vue')['UserOutlined']
     Versions: typeof import('./src/components/Versions.vue')['default']
   }
 }
