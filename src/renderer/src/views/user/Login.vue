@@ -6,7 +6,9 @@
       ref="formLogin"
     >
       <a-tabs
-        :tabBarStyle="{ textAlign: 'center', borderBottom: 'unset' }"
+        :active-key="customActiveKey"
+        :tab-bar-style="{ textAlign: 'center', borderBottom: 'unset' }"
+        :centered="true"
       >
         <a-tab-pane key="tab1" tab="账户密码登录">
           <a-form-item>
@@ -15,18 +17,20 @@
               type="text"
               placeholder="服务器IP"
             >
-              <hdd-outlined />
+              <template #prefix>
+              <hdd-outlined :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </template>
             </a-input>
           </a-form-item>
-
           <a-form-item>
             <a-input
               size="large"
               type="text"
               placeholder="端口"
-
             >
-              <link-outlined />
+              <template #prefix>
+                <link-outlined :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </template>
             </a-input>
           </a-form-item>
 
@@ -36,7 +40,9 @@
               type="text"
               placeholder="用户名"
             >
-              <user-outlined />
+              <template #prefix>
+                <user-outlined :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </template>
             </a-input>
           </a-form-item>
 
@@ -45,7 +51,9 @@
               size="large"
               placeholder="密码"
             >
-              <lock-outlined />
+              <template #prefix>
+                <lock-outlined :style="{ color: 'rgba(0,0,0,.25)' }"/>
+              </template>
             </a-input-password>
           </a-form-item>
 
@@ -75,8 +83,20 @@
 </template>
 
 <script lang="ts">
+import {HddOutlined, LinkOutlined, UserOutlined, LockOutlined} from '@ant-design/icons-vue'
 export default {
-  name: "Login"
+  name: "Login",
+  data () : object{
+    return {
+      customActiveKey: 'tab1',
+    }
+  },
+  components:{
+    HddOutlined,
+    LinkOutlined,
+    UserOutlined,
+    LockOutlined
+  }
 }
 </script>
 
