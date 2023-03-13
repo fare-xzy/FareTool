@@ -6,7 +6,7 @@ import { execFile } from "child_process";
 
 let serverPath
 if (is.dev) {
-  serverPath = 'E:\\IDEA\\Web\\Mine\\FareTool\\server\\anysign-decrypt.exe1'
+  serverPath = 'E:\\IDEA\\Web\\Mine\\FareTool\\server\\anysign-decrypt.exe'
 } else {
   serverPath = './resources/server/anysign-decrypt.exe'
 }
@@ -41,6 +41,9 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
+// 本地需要启动的后台服务名称
+// const serverPath = './resources/server/anysign-decrypt.exe'
+// const serverPath = '../../server/anysign-decrypt.exe'
 let workerProcess
 function runExec (): void {
   // 执行命令行，如果命令不需要路径，或就是项目根目录，则不需要cwd参数：
@@ -75,7 +78,9 @@ app.whenReady().then(() => {
   app.on('browser-window-created', (_, window) => {
     optimizer.watchWindowShortcuts(window)
   })
+
   createWindow()
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
