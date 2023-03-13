@@ -96,6 +96,11 @@ export default {
     LinkOutlined,
     UserOutlined,
     LockOutlined
+  },
+  setup:{
+  },
+  methods:{
+
   }
 }
 </script>
