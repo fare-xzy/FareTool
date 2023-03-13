@@ -1,34 +1,34 @@
-# faretool
+# FareTool
 
 An Electron application with Vue and TypesSript
 
 ## Recommended IDE Setup
 
-- [VSCode](https://code.visualstudio.com/) + [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) + [Prettier](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Intellij IDEA](https://www.jetbrains.com.cn/idea/)
 
 ## Project Setup
 
 ### Install
 
 ```bash
-$ npm install
+$ cnpm install
 ```
 
 ### Development
 
 ```bash
-$ npm run dev
+$ electron-vite dev
 ```
 
 ### Build
 
 ```bash
 # For windows
-$ npm run build:win
+$ cnpm run build && electron-builder --win --config
 
 # For macOS
-$ npm run build:mac
+$ cnpm run build && electron-builder --mac --config
 
 # For Linux
-$ npm run build:linux
+$ cnpm run build && electron-builder --linux --config
 ```
