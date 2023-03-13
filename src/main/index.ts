@@ -79,6 +79,8 @@ app.whenReady().then(() => {
     optimizer.watchWindowShortcuts(window)
   })
 
+  createWindow()
+
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.
@@ -89,7 +91,6 @@ app.whenReady().then(() => {
 app.on('ready', () => {
   // 启动go后台服务
   runExec()
-  createWindow()
 })
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
